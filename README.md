@@ -1,2 +1,3 @@
 # NKS1
-NKS Lab1
+15 Варіант
+![Screenshot](Screenshot1.png)
