@@ -100,14 +100,22 @@ intensity_res = 0
 for count, i in enumerate(interval_bounds):
     if probability<i:
         #print(i)
-        probability_val = i
+        probability_val = interval_bounds[count-1]
         probability_ind = count
+        #print(probability_ind)
         for count, j in enumerate(statistical_density_usage):
+            #print(count)
             #print(j*interval_length)
             probability_counter+= j*interval_length
+            #print(probability_counter)
             if count == probability_ind-1:
-                probability_counter+=statistical_density_usage[probability_ind]*(probability_val-probability)
-                probability_res = round(1 - probability_counter,3)
+                #print(count)
+                #print(probability_val, "val")
+                #print(probability_ind, "ind")
+                #print(statistical_density_usage[probability_ind], "f")
+                probability_counter+=statistical_density_usage[probability_ind]*(probability-probability_val)
+                #print(probability_counter)
+                probability_res = round(1 - probability_counter,2)
 
                 break
         break
@@ -122,14 +130,14 @@ probability_counter = 0
 for count, i in enumerate(interval_bounds):
     if intensity<i:
         #print(i)
-        probability_val = i
+        probability_val = interval_bounds[count-1]
         probability_ind = count
         for count, j in enumerate(statistical_density_usage):
             #print(j*interval_length)
             probability_counter+= j*interval_length
             if count == probability_ind-1:
-                probability_counter+=statistical_density_usage[probability_ind]*(probability_val-intensity)
-                probability_res = round(1 - probability_counter,3)
+                probability_counter+=statistical_density_usage[probability_ind]*(intensity-probability_val)
+                probability_res = round(1 - probability_counter,2)
                 intensity_res = round(statistical_density_usage[probability_ind] / probability_res,6)
                 break
         break
